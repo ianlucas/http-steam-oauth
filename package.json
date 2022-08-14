@@ -6,6 +6,8 @@
   "main": "dist/steamOAuth.common.js",
   "module": "dist/steamOAuth.module.js",
   "types": "dist/types.d.ts",
+  "author": "Ian Lucas",
+  "license": "MIT",
   "scripts": {
     "build": "parcel build"
   },
