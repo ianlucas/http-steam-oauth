@@ -17,6 +17,7 @@ interface SteamSpec {
   realm: string;
   sessionPath: string;
   sessionSecret: string;
+  routePrefix?: string;
 }
 
 export interface UserData {
@@ -68,6 +69,8 @@ export function useUserData(handler: (userData: UserData) => Promise<void>) {
 }
 
 export default function useSteamOAuth(spec: SteamSpec) {
+  spec.routePrefix = spec.routePrefix || '';
+
   async function validate(
     identifier: string,
     profile: SteamProfile,
@@ -143,7 +146,7 @@ export default function useSteamOAuth(spec: SteamSpec) {
     passport.deserializeUser(deserializeUser);
     passport.use(steamStrategy);
 
-    app.get('/__login__', handleLogin);
-    app.get('/__postlogin__', handlePostLogin);
+    app.get(spec.routePrefix + '/__login__', handleLogin);
+    app.get(spec.routePrefix + '/__postlogin__', handlePostLogin);
   };
 }
