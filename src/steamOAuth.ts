@@ -19,7 +19,7 @@ interface ISteamSpec {
   sessionSecret: string;
 }
 
-interface IUserData {
+export interface IUserData {
   id: string;
   id2: string;
   name: string;
