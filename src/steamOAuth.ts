@@ -9,9 +9,9 @@ const Strategy: any = require('passport-steam');
 
 type doneHandler = (error: any, userId?: string) => void;
 
-interface ISteamSpec {
+interface SteamSpec {
   apiKey: string;
-  onAuthenticate?: (user: IUserData) => Promise<void>;
+  onAuthenticate?: (user: UserData) => Promise<void>;
   onFail: routeHandler;
   onSuccess: routeHandler;
   realm: string;
@@ -19,14 +19,14 @@ interface ISteamSpec {
   sessionSecret: string;
 }
 
-export interface IUserData {
+export interface UserData {
   id: string;
   id2: string;
   name: string;
   photo: string;
 }
 
-interface ISteamProfile {
+interface SteamProfile {
   _json: {
     avatarfull: string;
     personaname: string;
@@ -38,7 +38,7 @@ function replace(one: number, two: number) {
   return one === 1 ? two : one;
 }
 
-function getUserData(profile: ISteamProfile): IUserData {
+function getUserData(profile: SteamProfile): UserData {
   const data = profile._json;
   const steamId = BigInt(data.steamid);
   const universeId = replace(Number(steamId >> 56n), 0);
@@ -63,14 +63,14 @@ function deserializeUser(id: string, done: doneHandler) {
   done(null, id);
 }
 
-export function useUserData(handler: (userData: IUserData) => Promise<void>) {
+export function useUserData(handler: (userData: UserData) => Promise<void>) {
   return handler;
 }
 
-export default function useSteamOAuth(spec: ISteamSpec) {
+export default function useSteamOAuth(spec: SteamSpec) {
   async function validate(
     identifier: string,
-    profile: ISteamProfile,
+    profile: SteamProfile,
     done: doneHandler
   ) {
     try {
