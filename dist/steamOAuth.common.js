@@ -76,7 +76,7 @@ function $cb30a718c416064d$export$2e2bcd8739ae039(spec) {
     return function steamPlugin(app) {
         const options = {
             apiKey: spec.apiKey,
-            returnURL: `${spec.realm}/__postlogin__`,
+            returnURL: `${spec.realm}${spec.routePrefix}/__postlogin__`,
             realm: spec.realm
         };
         const steamStrategy = new $M42m8$passportsteam(options, validate);
