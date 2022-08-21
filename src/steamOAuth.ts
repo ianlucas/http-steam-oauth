@@ -120,7 +120,7 @@ export default function useSteamOAuth(spec: SteamSpec) {
   return function steamPlugin(app: express.Application) {
     const options = {
       apiKey: spec.apiKey,
-      returnURL: `${spec.realm}/__postlogin__`,
+      returnURL: `${spec.realm}${spec.routePrefix}/__postlogin__`,
       realm: spec.realm
     };
 
