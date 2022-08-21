@@ -39,6 +39,7 @@ function $da4f350b3eba35fd$export$52a7e4f3f505b7fa(handler) {
     return handler;
 }
 function $da4f350b3eba35fd$export$2e2bcd8739ae039(spec) {
+    spec.routePrefix = spec.routePrefix || "";
     async function validate(identifier, profile, done) {
         try {
             const userData = $da4f350b3eba35fd$var$getUserData(profile);
@@ -84,8 +85,8 @@ function $da4f350b3eba35fd$export$2e2bcd8739ae039(spec) {
         $5J6bb$serializeUser($da4f350b3eba35fd$var$serializeUser);
         $5J6bb$deserializeUser($da4f350b3eba35fd$var$deserializeUser);
         $5J6bb$use(steamStrategy);
-        app.get("/__login__", handleLogin);
-        app.get("/__postlogin__", handlePostLogin);
+        app.get(spec.routePrefix + "/__login__", handleLogin);
+        app.get(spec.routePrefix + "/__postlogin__", handlePostLogin);
     };
 }
 

@@ -8,6 +8,7 @@ interface SteamSpec {
     realm: string;
     sessionPath: string;
     sessionSecret: string;
+    routePrefix?: string;
 }
 export interface UserData {
     id: string;

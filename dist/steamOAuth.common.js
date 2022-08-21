@@ -50,6 +50,7 @@ function $cb30a718c416064d$export$52a7e4f3f505b7fa(handler) {
     return handler;
 }
 function $cb30a718c416064d$export$2e2bcd8739ae039(spec) {
+    spec.routePrefix = spec.routePrefix || "";
     async function validate(identifier, profile, done) {
         try {
             const userData = $cb30a718c416064d$var$getUserData(profile);
@@ -95,8 +96,8 @@ function $cb30a718c416064d$export$2e2bcd8739ae039(spec) {
         $M42m8$passport.serializeUser($cb30a718c416064d$var$serializeUser);
         $M42m8$passport.deserializeUser($cb30a718c416064d$var$deserializeUser);
         $M42m8$passport.use(steamStrategy);
-        app.get("/__login__", handleLogin);
-        app.get("/__postlogin__", handlePostLogin);
+        app.get(spec.routePrefix + "/__login__", handleLogin);
+        app.get(spec.routePrefix + "/__postlogin__", handlePostLogin);
     };
 }
 
